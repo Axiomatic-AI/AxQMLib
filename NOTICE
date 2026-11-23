@@ -1,0 +1,31 @@
+AxQM — a Lean 4 formalization of Nielsen & Chuang grounded in the
+postulates of quantum mechanics
+Copyright (c) 2026 Axiomatic AI
+
+Licensed under the Apache License, Version 2.0. The full terms are in the file
+LICENSE. SPDX-License-Identifier: Apache-2.0
+
+Original to Axiomatic AI: AxQM/ and ToMathlib/.
+
+
+THIRD-PARTY MATERIAL
+
+The library depends on Mathlib (https://github.com/leanprover-community/mathlib4),
+Copyright (c) the mathlib4 authors, licensed under the Apache License, Version
+2.0. Lake fetches it at build time, at the revision recorded in
+lake-manifest.json; no Mathlib file is included in this repository.
+
+ToMathlib/ holds general mathematics written for this library. Where a file
+there extends a Mathlib file, it has the same relative path and contains only
+the additions.
+
+
+NIELSEN AND CHUANG
+
+The library formalizes results and exercises from Quantum Computation and
+Quantum Information by Michael A. Nielsen and Isaac L. Chuang (Cambridge
+University Press), each cited by item number and page. The book is not
+reproduced: each item is stated in Lean and summarised in a sentence of our
+own, and comments quote short phrases of the book only where its wording bears
+on how a statement should be read. Rights in the book remain with its rights
+holders, and nothing granted above extends to them.

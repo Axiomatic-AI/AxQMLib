@@ -1,0 +1,6 @@
+# Lake build output and dependencies
+.lake/
+# Created by `lake exe cache get` if no home directory is available
+.cache/
+# macOS
+.DS_Store

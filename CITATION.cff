@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this library, please cite the paper it accompanies."
+type: software
+title: "AxQM"
+abstract: >-
+  A Lean 4 formalization of Nielsen & Chuang, Quantum Computation and Quantum
+  Information, in which every quantum notion is grounded in the postulates of
+  quantum mechanics.
+license: Apache-2.0
+repository-code: "https://github.com/Axiomatic-AI/AxQMLib"
+authors:
+  - family-names: Yin
+    given-names: Winston
+    affiliation: Axiomatic AI
+  - family-names: Koppens
+    given-names: Frank
+    affiliation: "Institut de Ciències Fotòniques (ICFO)"
+preferred-citation:
+  type: article
+  title: >-
+    Autonomous formalisation of finite-dimensional quantum mechanics grounded in
+    axiomatic foundations
+  year: 2026
+  authors:
+    - family-names: Yin
+      given-names: Weichen Winston
+      affiliation: Axiomatic AI
+    - family-names: Taylor
+      given-names: Jacob M.
+      affiliation: Axiomatic AI
+    - family-names: Englund
+      given-names: Dirk R.
+      affiliation: "Axiomatic AI; Massachusetts Institute of Technology (MIT)"
+    - family-names: Koppens
+      given-names: Frank H. L.
+      affiliation: "Institut de Ciències Fotòniques (ICFO); Institució Catalana de Recerca i Estudis Avançats (ICREA)"

@@ -1,0 +1,60 @@
+name: Lean Action CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    # In a private copy of the repository, where hosted runners are billed, run only when started
+    # by hand.
+    if: ${{ !github.event.repository.private || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      # The build needs more disk than a hosted runner has free: this library's build output and
+      # Mathlib's come to about 16 GB, before the downloaded cache. Remove preinstalled toolsets
+      # it does not use.
+      - name: Free disk space
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - uses: actions/checkout@v7
+
+      # Installs Lean, fetches Mathlib's cache, restores and saves `.lake`, and builds. `--wfail`
+      # fails the build on any warning.
+      - uses: leanprover/lean-action@v1
+        with:
+          use-mathlib-cache: true
+          build-args: --wfail
+          mk_all-check: true
+
+      - name: Disk usage
+        if: ${{ always() }}
+        run: df -h /
+
+      # No declaration is an `axiom` or depends on one beyond `propext`, `Classical.choice` and
+      # `Quot.sound`.
+      - name: Proof integrity
+        run: |
+          printf 'import AxQM.Meta.Integrity\nimport ToMathlib\nimport AxQM\n#check_integrity\n' \
+            | lake env lean --stdin
+
+      - name: Copyright headers
+        run: |
+          bad=0
+          while IFS= read -r f; do
+            if [ "$(sed -n 1p "$f")" != "/-" ] \
+                || ! sed -n 2p "$f" | grep -q '^Copyright (c) [0-9]\{4\} .*\. All rights reserved\.$' \
+                || [ "$(sed -n 3p "$f")" != "Released under Apache 2.0 license as described in the file LICENSE." ]; then
+              echo "::error file=$f,line=1::missing the copyright header"
+              bad=1
+            fi
+          done < <(git ls-files 'AxQM/*.lean' 'ToMathlib/*.lean')
+          exit $bad
