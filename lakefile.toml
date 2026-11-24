@@ -1,0 +1,16 @@
+# Builds the API documentation of the library with doc-gen4; see `README.md`.
+name = "docbuild"
+reservoir = false
+version = "0.1.0"
+
+# The commit of the library that is documented.
+[[require]]
+name = "axqm"
+git = "https://github.com/Axiomatic-AI/AxQMLib"
+rev = "879c995a38e8ec1360f0c90862c03638902b1393"
+
+# Keep at the tag of the toolchain in `lean-toolchain`.
+[[require]]
+scope = "leanprover"
+name = "doc-gen4"
+rev = "v4.36.0"
