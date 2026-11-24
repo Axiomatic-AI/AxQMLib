@@ -18,6 +18,8 @@ Every numbered item of the book has one file, `AxQM/NC/Ch<N>/<Item>.lean`; Theor
 file and its status. Search it for `refuted` or `corrected` to find the items where the book is
 wrong.
 
+[The Lean documentation for AxQM](https://axiomatic-ai.github.io/AxQMLib/)
+
 Each item's file opens with a paraphrase of the item and then either
 
 - states the result itself, as one or more `theorem`s in the file, or
